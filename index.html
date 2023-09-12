@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Seating Allocation Generator</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #ccc;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Seating Allocation Generator</h1>
+    <label for="rows">Number of Rows:</label>
+    <input type="number" id="rows" min="1" value="3">
+    <label for="cols">Number of Columns:</label>
+    <input type="number" id="cols" min="1" value="4">
+    <label for="persons">Number of Persons:</label>
+    <input type="number" id="persons" min="1" value="10">
+    <button onclick="allocateSeats()">Generate</button>
+	<br><br>
+    <table id="seating-plan"></table>
+
+    <script>
+        function allocateSeats() {
+            const rows = parseInt(document.getElementById("rows").value);
+            const cols = parseInt(document.getElementById("cols").value);
+            const numberOfPersons = parseInt(document.getElementById("persons").value);
+
+            if (isNaN(rows) || isNaN(cols) || isNaN(numberOfPersons) || rows <= 0 || cols <= 0 || numberOfPersons <= 0) {
+                alert("Number of rows, columns, and persons must be positive numbers.");
+                return;
+            }
+
+            const seatingPlan = document.getElementById("seating-plan");
+            seatingPlan.innerHTML = "";
+
+            const totalSeats = rows * cols;
+            if (numberOfPersons > totalSeats) {
+                alert("Number of persons cannot exceed the total number of seats.");
+                return;
+            }
+
+            const seats = new Array(totalSeats).fill("-");
+            for (let i = 0; i < numberOfPersons; i++) {
+                let randomSeat;
+                do {
+                    randomSeat = Math.floor(Math.random() * totalSeats);
+                } while (seats[randomSeat] !== "-");
+                seats[randomSeat] = i + 1;
+            }
+
+            let seatIndex = 0;
+            for (let i = 0; i < rows; i++) {
+                const row = seatingPlan.insertRow();
+                for (let j = 0; j < cols; j++) {
+                    const cell = row.insertCell();
+                    cell.textContent = seats[seatIndex] !== "-" ? `Person ${seats[seatIndex]}` : "";
+					cell.title = (i+1) + ',' + (j+1); 
+                    seatIndex++;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
