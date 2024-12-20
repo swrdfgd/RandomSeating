@@ -4,19 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Seating Allocation Generator</title>
-    <style>
-        table {
-            border-collapse: collapse;
-        }
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f9f9f9;
+			color: #333;
+		}
 
-        td {
-            width: 50px;
-            height: 50px;
-            border: 1px solid #ccc;
-            text-align: center;
-            vertical-align: middle;
-        }
-    </style>
+		h1 {
+			text-align: center;
+			color: #444;
+			margin-top: 20px;
+		}
+
+		label {
+			margin: 10px;
+			font-weight: bold;
+		}
+
+		input[type="number"] {
+			padding: 5px;
+			margin: 5px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			width: 60px;
+			text-align: center;
+		}
+
+		button {
+			padding: 8px 15px;
+			background-color: #007BFF;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button:hover {
+			background-color: #0056b3;
+		}
+
+		table {
+			margin: 20px auto;
+			border-collapse: collapse;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			background-color: #fff;
+		}
+
+		td {
+			width: 70px;
+			height: 70px;
+			border: 1px solid #ddd;
+			text-align: center;
+			vertical-align: middle;
+			font-size: 14px;
+			font-weight: bold;
+			color: #555;
+			transition: background-color 0.3s ease, color 0.3s ease;
+		}
+
+		td:hover {
+			background-color: #f0f0f0;
+			color: #007BFF;
+		}
+
+		tr:nth-child(even) {
+			background-color: #f7f7f7;
+		}
+
+		@media (max-width: 768px) {
+			td {
+				width: 50px;
+				height: 50px;
+				font-size: 12px;
+			}
+		}
+	</style>
+
 </head>
 <body>
     <h1>Random Seating Allocation Generator</h1>
